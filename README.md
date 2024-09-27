@@ -116,8 +116,10 @@ In your terminal, input the command:
 ssh -i .ssh/name-of-key arch@ip-address-of-droplet
 ```
 - `ssh` is the command used to initiate an SSH connection
-- `-i` specifies the identity file which is the private key that uses the connection. Where `.ssh/name-of-key` is the path
+- `-i` specifies the identity file which is the private key that uses the connection. Where `.ssh/name-of-key` is the path of the identity file (the private key)
 - `arch` is the username from the image
+
+>Note: full path for the SSH key may be necessary if using PowerShell
 
 To stop the connection, type `exit`.
 
@@ -125,22 +127,17 @@ To stop the connection, type `exit`.
 
 While the above method works fine, it is extra typing. It may be preferable for you to connect through an SSH config file.
 
-If you do not already have a config file in your .ssh directory, you can create one using this command:
+If you do not already have a config file in your .ssh directory, you can use use **neovim** to create and edit a file.
 
-```
-New-Item config 
-```
-To edit the file, you can use the hyperextensible Vim-based text editor **neovim** or you can just find the file and edit it with notepad.
-
-Using this command will allow you to edit the file with neovim:
+Using this command will allow you to create then edit the file with neovim:
 
 ```
 nvim config
 ```
->Note: If you get an error, make sure [neovim](https://neovim.io/) is installed.
+>Note: If you get an error, make sure [neovim](https://neovim.io/) is installed on your local machine.
 ### To edit the file within neovim:
 - `i` to enter "Insert mode"
-- `Esc` to exit insert mode 
+- `Esc` to exit Insert mode 
 
 
 This is an example of your config file should look like:
@@ -155,7 +152,7 @@ Host kim-dokja
   UserKnownHostsFile /dev/null
 ```
 - `143.198.134.136` should be replaced with **your** droplet IP address
-- `demon-king-of-salvation` should be replaced with the name you chose for your SSH key
+- `demon-king-of-salvation` should be replaced with the name you chose for your SSH key file
 >Note: If `nvim` was used, type `:wq` to save and exit
 
 
@@ -171,3 +168,35 @@ ssh kim-dokja
 - install some initial packages
 - add a public ssh key to the authorized_keys file in your new users home directory
 - disable root access via ssh
+
+### Before you do anything
+
+Once you have successfully connected to the server, run this command to update the system:
+```
+sudo pacman -Syu
+```
+- `sudo` is used to run a command with administrative priviliges, which in this case is necessary since you are updating the system and need access to the important files
+- `pacman` is the package manager for Arch linux
+- `Syu` is a group of command options
+    - `S`: Sync
+    - `y`: Refreshes and downloads package database
+    - `u`: Upgrades packages
+
+>Note: Avoid partial upgrades like `pacman -Sy`, always run `pacman -Syu` instead 
+
+Run this command to install some packages and dependencies that will be useful later on:
+```
+sudo pacman -S bash-completion git less man-db neovim
+```
+These commands are great to use if you are only managing one server, but what if you wanted to set up many more servers? It would be a hassle to individually enter these commands for each instance. This is where **cloud-init** comes in!!
+### Cloud-init
+
+To check if cloud-init is running in the server, you can type the command:
+```
+systemctl status cloud-init
+```
+
+### Resources:
+https://www.ssh.com/academy/ssh/command
+https://neovim.io/doc/user/index.html
+https://wiki.archlinux.org/title/System_maintenance#Upgrading_the_system
