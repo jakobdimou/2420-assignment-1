@@ -89,7 +89,8 @@ It should look something like this when the upload has completed:
 
 ## Setting up a droplet using Arch Linux
 
->Note: This step will only work if the Arch Linux image has been uploaded **and** an SSH key has been generated
+>[!NOTE] 
+>This step will only work if the Arch Linux image has been uploaded **and** an SSH key has been generated
 
 On the DigitalOcean website, there will be a large green button that says **"Create"**, then click on **"Droplets"**.
 
