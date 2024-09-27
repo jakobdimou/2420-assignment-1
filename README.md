@@ -2,7 +2,7 @@
 ## Introduction
 In this tutorial, you will be setting up an Arch Linux environment through DigitalOcean. This guide aims to demonstrate:
 - [Generating SSH keys on your local machine](#generating-an-ssh-key-on-your-local-machine)
-- [Uploading a custom Arch Linux image](#uploading)
+- [Uploading a custom Arch Linux image](#uploading-a-custom-arch-linux-image-to-digitalocean)
 - [Setting up a droplet through Arch Linux](#droplet)
 - [Using a cloud-init file to automate initial setup tasks](#cloudinit)
 
@@ -79,4 +79,7 @@ Download the file from the latest **images** package that contains **"cloud-img"
 - Click on the blue **"Upload Image"** button
 - Select the image file you just downloaded
 
->Note: When uploading the Arch Linux, make sure to select **Arch Linux** as the distribution and **San Francisco 3** for the datacenter region as it is the closest server to Vancouver, BC
+>Note: When uploading the Arch Linux image, make sure to select **Arch Linux** as the distribution and **San Francisco 3** for the datacenter region as it is the closest server to Vancouver, BC
+
+It should look something like this when uploading is finished
+![arch linux upload complete](images/archlinux.png)
