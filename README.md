@@ -3,7 +3,7 @@
 In this tutorial, you will be setting up an Arch Linux environment through DigitalOcean. This guide aims to demonstrate:
 - [Generating SSH keys on your local machine](#generating-an-ssh-key-on-your-local-machine)
 - [Uploading a custom Arch Linux image](#uploading-a-custom-arch-linux-image-to-digitalocean)
-- [Setting up a droplet through Arch Linux](#droplet)
+- [Setting up a droplet running Arch Linux](#droplet)
 - [Using a cloud-init file to automate initial setup tasks](#cloudinit)
 
 ## Generating an SSH key on your local machine
@@ -37,7 +37,9 @@ ssh-keygen -t ed25519 -f C:\Users\your-windows-user\.ssh\name-of-key -C "leave y
 
 Replace `name-of-key` with a name for your key, and replace `"leave your comment here"` with a comment to help you identify the key later, like your email address or something helpful.
 
-After running the command, you will be prompted to enter a passphrase. This is optional but provides added security, so do as you will. But keep in mind you will need to remember this password everytime you use the SSH key.
+After running the command, you will be asked to enter a passphrase. This is optional but provides added security. Keep in mind you will need to remember this password everytime you use the SSH key.
+
+> Note: If something went wrong, try going through all the steps again and confirm the steps were followed correctly.
 
 ## Adding your public SSH key to DigitalOcean
 
@@ -81,5 +83,9 @@ Download the file from the latest **images** package that contains **"cloud-img"
 
 >Note: When uploading the Arch Linux image, make sure to select **Arch Linux** as the distribution and **San Francisco 3** for the datacenter region as it is the closest server to Vancouver, BC
 
-It should look something like this when uploading is finished
+It should look something like this when the upload has completed:
+
 ![arch linux upload complete](images/archlinux.png)
+
+
+## Using a cloud-init file to automate initial setup tasks
