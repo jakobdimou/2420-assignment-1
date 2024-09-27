@@ -35,7 +35,7 @@ ssh-keygen -t ed25519 -f C:\Users\your-windows-user\.ssh\name-of-key -C "leave y
 - `-f ~/.ssh/name-of-key`: Specify the filepath
 - `-C "leave your comment here"`: Leave a comment
 
-Replace `name-of-key` with a name for your key, and replace `"leave your comment here"` with a comment to you identify the key later, like your email address or something helpful.
+Replace `name-of-key` with a name for your key, and replace `"leave your comment here"` with a comment to help you identify the key later, like your email address or something helpful.
 
 After running the command, you will be prompted to enter a passphrase. This is optional but provides added security, so do as you will. But keep in mind you will need to remember this password everytime you use the SSH key.
 
@@ -64,4 +64,19 @@ The copied content should look something like this:
  - Give the SSH key a name for better organization
  - Press **"Add SSH key"** to finalize the process
 
- **Congratulations!** You have now generated an SSH key and added it to your DigitalOcean account.
+ **✧Congratulations!✧** You have now generated an SSH key and added it to your DigitalOcean account.
+
+
+## Uploading a custom Arch Linux image to DigitalOcean
+
+To start, an Arch linux image will need to be downloaded. The file can be found [here](https://gitlab.archlinux.org/archlinux/arch-boxes/-/packages/).
+
+Download the file from the latest **images** package that contains **"cloud-img"** and ends with **".qcow2"**
+
+### On the DigitalOcean website
+
+- Click on the **"Backups & Snapshots"** page from the **"Manage"** dropdown menu
+- Click on the blue **"Upload Image"** button
+- Select the image file you just downloaded
+
+>Note: When uploading the Arch Linux, make sure to select **Arch Linux** as the distribution and **San Francisco 3** for the datacenter region as it is the closest server to Vancouver, BC
