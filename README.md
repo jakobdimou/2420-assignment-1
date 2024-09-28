@@ -236,7 +236,7 @@ Replace `user-name` and `group-name` with names of your choosing.
 
 ### Using the cloud-init file on DigitalOcean
 
-Using the cloud-init file to run additional initialization scripts on DigitalOcean is very simple. All you need to do is whenever you create a droplet, go to the **Advanced Options** section and click on **Add initialization scripts**.
+Using the cloud-init file to run additional initialization scripts on DigitalOcean is very simple. All you need to do is whenever you create a droplet, go to the **Advanced Options** section and click on **Add initialization scripts**. Then, copy and paste the contents of the YAML file you just created.
 
 If done properly your page should look something like this: 
 
