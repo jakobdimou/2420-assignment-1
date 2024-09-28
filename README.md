@@ -9,7 +9,7 @@ In this tutorial, you will be setting up an Arch Linux environment through Digit
 ## Generating an SSH key on your local machine
 Creating an SSH key will be necessary to connect to and authenticate a droplet on DigitalOcean.
 
-As most of you are probably on windows, create a .ssh directory in your home directory if you haven't yet.
+As most of you are probably on Windows, create a .ssh directory in your home directory if you haven't yet.
 
 
 To find your home directory you can type the command:
@@ -45,7 +45,7 @@ After running the command, you will be asked to enter a passphrase. This is opti
 
 The public SSH key file will be located in the `~/.ssh` directory and has a `.pub` extension. For example, if you named your key `kim-dokja`, the public key file would be `~/.ssh/kim-dokja.pub`.
 
-You could just just open the file in notepad and copy the content from there, or you could directly copy it to your clipboard using the terminal
+You could just open the file in Notepad and copy the content from there, or you could directly copy it to your clipboard using the terminal.
 
 An example in PowerShell would be:
 
@@ -89,8 +89,7 @@ It should look something like this when the upload has completed:
 
 ## Setting up a droplet using Arch Linux
 
->[!NOTE] 
->This step will only work if the Arch Linux image has been uploaded **and** an SSH key has been generated
+>Note: This step will only work if the Arch Linux image has been uploaded **and** an SSH key has been generated
 
 On the DigitalOcean website, there will be a large green button that says **"Create"**, then click on **"Droplets"**.
 
@@ -120,7 +119,7 @@ ssh -i .ssh/name-of-key arch@ip-address-of-droplet
 - `-i` specifies the identity file which is the private key that uses the connection. Where `.ssh/name-of-key` is the path of the identity file (the private key)
 - `arch` is the username from the image
 
->Note: full path for the SSH key may be necessary if using PowerShell
+>Note: The full path for the SSH key may be necessary if using PowerShell.
 
 To stop the connection, type `exit`.
 
@@ -196,10 +195,66 @@ To check if cloud-init is running in the server, you can type the command:
 ```
 systemctl status cloud-init
 ```
+An example of what a cloud-init YAML file might look like:
+```
+#cloud-config
+users:
+  - name: user-name #change me
+    primary_group: group-name #change me
+    groups: wheel
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-ed25519 ... #public key goes here
+
+packages:
+  - ripgrep
+  - rsync
+  - neovim
+  - fd
+  - less
+  - man-db
+  - bash-completion
+  - tmux
+
+disable_root: true
+```
+This documentation provides an example of a cloud-init YAML file configuration. 
+The configuration includes user setup with specified groups, shell, and sudo privileges. 
+It also lists packages to be installed and disables the root user.
+
+- `#cloud-config`: Important for the file to get recognized and run.
+- `users`: Defines user details such as username, primary group, other groups, shell, sudo privileges, and SSH keys.
+- `packages:` Is similar to the sudo pacman command that was utilized earlier, but with this config file, the packages will already be installed for you with the creation of the droplet.
+- `disable_root`: A boolean value to disable the root user.
 
 
 
-### Resources:
-https://www.ssh.com/academy/ssh/command
-https://neovim.io/doc/user/index.html
-https://wiki.archlinux.org/title/System_maintenance#Upgrading_the_system
+Replace `user-name` and `group-name` with names of your choosing.
+
+>Note: While the YAML file is not directly used as you just copy and paste the contents of the YAML file into DigitalOcean's web console, it is important as provides the proper formatting.
+
+### Using the cloud-init file on DigitalOcean
+
+Using the cloud-init file to run additional initialization scripts on DigitalOcean is very simple. All you need to do is whenever you create a droplet, go to the **Advanced Options** section and click on **Add initialization scripts**.
+
+If done properly your page should look something like this: 
+
+![cloud-init script adding](images/cloud-init.png)
+
+Go ahead and click on **Create Droplet** and you have successfully created a droplet using a cloud-init file!!! **✧Congratulations!✧**
+
+>Note: If you encountered any troubles thoroughly go through each step and ensure no mistake was made.
+### References
+
+Arch Linux. (n.d.). Pacman. Retrieved from https://wiki.archlinux.org/title/Pacman
+
+Arch Linux. (n.d.). System maintenance: Upgrading the system. Retrieved from https://wiki.archlinux.org/title/System_maintenance#Upgrading_the_system
+
+Arch Linux. (n.d.). Cloud-init. Retrieved from https://wiki.archlinux.org/title/Cloud-init
+
+Manjaro Linux. (n.d.). Pacman overview. Retrieved from https://wiki.manjaro.org/index.php?title=Pacman_Overview
+
+SSH Academy. (n.d.). SSH command. Retrieved from https://www.ssh.com/academy/ssh/command
+
+Neovim. (n.d.). Neovim documentation. Retrieved from https://neovim.io/doc/user/index.html
