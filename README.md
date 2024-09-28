@@ -85,7 +85,7 @@ Download the file from the latest **images** package that contains **"cloud-img"
 
 It should look something like this when the upload has completed:
 
-![arch linux upload complete](images/archlinux.png)
+![arch linux upload complete](assets/archlinux.png)
 
 ## Setting up a droplet using Arch Linux
 
@@ -105,7 +105,7 @@ Do not forget to name the droplet either, under **"Hostname"**
 
 If the creation of your droplet was a success, your screen should look something like this: 
 
-![droplet creation success](images/dropletcreationsuccess.png)
+![droplet creation success](assets/dropletcreationsuccess.png)
 
 **"salvation"** is the name I chose for my droplet and **137.184.4.74** is the IP address of the droplet.
 
@@ -240,7 +240,7 @@ Using the cloud-init file to run additional initialization scripts on DigitalOce
 
 If done properly your page should look something like this: 
 
-![cloud-init script adding](images/cloud-init.png)
+![cloud-init script adding](assets/cloud-init.png)
 
 Go ahead and click on **Create Droplet** and you have successfully created a droplet using a cloud-init file!!! **✧Congratulations!✧**
 
