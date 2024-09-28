@@ -197,6 +197,8 @@ To check if cloud-init is running in the server, you can type the command:
 systemctl status cloud-init
 ```
 
+
+
 ### Resources:
 https://www.ssh.com/academy/ssh/command
 https://neovim.io/doc/user/index.html
